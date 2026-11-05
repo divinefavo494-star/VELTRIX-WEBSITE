@@ -64,6 +64,23 @@ nav a:hover,.text-link:hover{color:var(--gold2)}
 .ticker div{display:inline-block;animation:tick 40s linear infinite}
 @keyframes tick{to{transform:translateX(-50%)}}
 
+/* SCROLL STORY */
+.story{height:300vh;position:relative;background:#0a0b0c}
+.story-stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;place-items:center}
+.story-stage{position:relative;width:min(92vw,520px);height:min(80vh,600px)}
+.st-book{position:absolute;left:50%;top:50%;width:min(260px,62vw);height:min(340px,80%);transform:translate(-50%,-50%);perspective:1200px}
+.pg{position:absolute;top:0;width:50%;height:100%;background:linear-gradient(160deg,#1f1a13,#0b0a08);border:1px solid rgba(201,169,110,.55);backface-visibility:hidden}
+.pg.l{left:0;transform-origin:100% 50%;border-radius:4px 0 0 4px}
+.pg.r{right:0;transform-origin:0% 50%;border-radius:0 4px 4px 0}
+.st-v{position:absolute;inset:0;display:grid;place-items:center}
+.st-v svg{width:58%;height:auto}
+.st-words{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(2.2rem,7vw,4.4rem);line-height:1.05;letter-spacing:-.05em}
+.sw{display:inline-block;opacity:0;margin:0 .12em}
+.sw em{font-style:normal;color:var(--gold2)}
+.st-phone{position:absolute;left:50%;top:50%;width:200px;opacity:0}
+.st-phone .phone{width:100%}
+.st-final{position:absolute;left:0;right:0;bottom:8%;text-align:center;font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(1.6rem,4.5vw,2.8rem);letter-spacing:-.04em;color:var(--gold2);opacity:0}
+
 /* SECTIONS */
 section{padding:120px 0}
 .section-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:56px}
@@ -73,15 +90,15 @@ section{padding:120px 0}
 /* SERVICES: editorial rows */
 .services,.approach{background:#0d0f10}
 .svc-list{border-top:1px solid var(--line)}
-.svc{position:relative;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:34px;align-items:center;padding:40px 0;border-bottom:1px solid var(--line);overflow:hidden}
+.svc{position:relative;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:34px;align-items:center;padding:40px 0;border-bottom:1px solid var(--line);overflow:hidden;cursor:pointer}
 .svc:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.25fr)}
 .svc:nth-child(even) h3{order:2}
 .svc:nth-child(even) .svc-d{order:1}
 .svc::before{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:linear-gradient(90deg,var(--gold),transparent 80%);transform:scaleX(0);transform-origin:left;transition:transform 1s var(--ease)}
-.svc:hover::before{transform:scaleX(1)}
+.svc:hover::before,.svc.on::before{transform:scaleX(1)}
 .svc h3{font-size:clamp(1.9rem,4vw,3.4rem);line-height:1;margin:0;font-weight:600;transition:color .5s,transform .8s var(--ease)}
-.svc:hover h3{color:var(--gold2);transform:translateX(14px)}
-.svc:nth-child(even):hover h3{transform:translateX(-14px)}
+.svc:hover h3,.svc.on h3{color:var(--gold2);transform:translateX(14px)}
+.svc:nth-child(even):hover h3,.svc:nth-child(even).on h3{transform:translateX(-14px)}
 .svc-d p{color:var(--muted);font-size:.98rem;margin:0 0 16px;max-width:420px}
 .svc-d ul{margin:0;padding:0;list-style:none;color:#8f8b82;font-size:.86rem}
 .svc-d li{padding:3px 0}
@@ -229,8 +246,15 @@ footer{padding-bottom:120px}
 .cv-resp p{text-align:left}
 .cv-next{flex-direction:column;align-items:flex-start}
 .logo{width:32px;height:32px}
+.st-phone{width:170px}
 }
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}.w{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+.rv{opacity:1;transform:none}.w{opacity:1;transform:none}
+.story{height:auto}
+.story-stick{position:relative;height:auto;min-height:80vh;padding:60px 0}
+.story-stage{height:520px}
+}
 </style>
 </head>
 <body>
@@ -257,15 +281,27 @@ footer{padding-bottom:120px}
 
 <div class="ticker" aria-hidden="true"><div>Web design ✳ UI/UX ✳ 3D experiences ✳ Branding ✳ Web apps ✳ Automation ✳ Web design ✳ UI/UX ✳ 3D experiences ✳ Branding ✳ Web apps ✳ Automation ✳ </div></div>
 
+<section class="story" id="story" aria-label="Introduction">
+<div class="story-stick"><div class="story-stage">
+<div class="st-book" id="stBook" aria-hidden="true">
+<div class="pg l" id="pgL"></div><div class="pg r" id="pgR"></div>
+<div class="st-v"><svg viewBox="0 0 40 40"><defs><linearGradient id="vg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3dfaf"/><stop offset="1" stop-color="#b8914f"/></linearGradient></defs><path d="M8 9L20 32L32 9" fill="none" stroke="url(#vg2)" stroke-width="2.6" stroke-linejoin="miter"/></svg></div>
+</div>
+<h2 class="st-words" id="stWords"><span class="sw">Design</span> <span class="sw">the</span> <span class="sw"><em>future.</em></span></h2>
+<div class="st-phone" id="stPhone" aria-hidden="true"></div>
+<p class="st-final" id="stFinal">Build the extraordinary.</p>
+</div></div>
+</section>
+
 <section class="services" id="services"><div class="wrap">
 <div class="section-head rv"><div><div class="eyebrow">Services</div><h2>Digital, made <span class="gold">remarkable.</span></h2></div><p>Six disciplines, one studio. Each is shaped around your goals and your audience.</p></div>
 <div class="svc-list">
-<article class="svc rv"><h3>Website Design & Development</h3><div class="svc-d"><p>Fast, responsive sites built to make brands stand out.</p><ul><li>Business and corporate</li><li>E-commerce</li><li>School, real estate, hospitality, automotive</li></ul></div></article>
-<article class="svc rv"><h3>UI/UX Design</h3><div class="svc-d"><p>Clear journeys shaped around real people.</p><ul><li>Interface and experience design</li><li>Responsive design</li><li>Website prototyping</li></ul></div></article>
-<article class="svc rv"><h3>3D & Interactive Web</h3><div class="svc-d"><p>Visual experiences that bring products and stories to life.</p><ul><li>3D hero sections</li><li>Interactive product showcases</li><li>Three.js experiences</li></ul></div></article>
-<article class="svc rv"><h3>Branding & Visual Identity</h3><div class="svc-d"><p>Brand systems that stay consistent everywhere.</p><ul><li>Logo design</li><li>Brand identity</li><li>Digital brand assets</li></ul></div></article>
-<article class="svc rv"><h3>Web Apps & Digital Products</h3><div class="svc-d"><p>Tools designed around the way your business works.</p><ul><li>Custom web applications</li><li>Admin dashboards</li><li>Database-powered apps</li></ul></div></article>
-<article class="svc rv"><h3>Automation & Digital Solutions</h3><div class="svc-d"><p>Smarter workflows for your team.</p><ul><li>Workflow automation</li><li>Process improvements</li><li>Digital integrations</li></ul></div></article>
+<article class="svc rv" tabindex="0"><h3>Website Design & Development</h3><div class="svc-d"><p>Fast, responsive sites built to make brands stand out.</p><ul><li>Business and corporate</li><li>E-commerce</li><li>School, real estate, hospitality, automotive</li></ul></div></article>
+<article class="svc rv" tabindex="0"><h3>UI/UX Design</h3><div class="svc-d"><p>Clear journeys shaped around real people.</p><ul><li>Interface and experience design</li><li>Responsive design</li><li>Website prototyping</li></ul></div></article>
+<article class="svc rv" tabindex="0"><h3>3D & Interactive Web</h3><div class="svc-d"><p>Visual experiences that bring products and stories to life.</p><ul><li>3D hero sections</li><li>Interactive product showcases</li><li>Three.js experiences</li></ul></div></article>
+<article class="svc rv" tabindex="0"><h3>Branding & Visual Identity</h3><div class="svc-d"><p>Brand systems that stay consistent everywhere.</p><ul><li>Logo design</li><li>Brand identity</li><li>Digital brand assets</li></ul></div></article>
+<article class="svc rv" tabindex="0"><h3>Web Apps & Digital Products</h3><div class="svc-d"><p>Tools designed around the way your business works.</p><ul><li>Custom web applications</li><li>Admin dashboards</li><li>Database-powered apps</li></ul></div></article>
+<article class="svc rv" tabindex="0"><h3>Automation & Digital Solutions</h3><div class="svc-d"><p>Smarter workflows for your team.</p><ul><li>Workflow automation</li><li>Process improvements</li><li>Digital integrations</li></ul></div></article>
 </div>
 </div></section>
 
@@ -330,6 +366,12 @@ $('year').textContent=new Date().getFullYear();
 const fl=$('waFloat');
 new IntersectionObserver(es=>es.forEach(e=>fl.classList.toggle('hide',e.isIntersecting)),{threshold:.2}).observe($('contactForm'));
 
+/* Services: tap or press Enter to reveal the gold line and move the title */
+document.querySelectorAll('.svc').forEach(el=>{
+el.addEventListener('click',()=>el.classList.toggle('on'));
+el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();el.classList.toggle('on')}});
+});
+
 /* Concept data (fictional brands, self-initiated concepts) */
 const P=[
 {k:'Automotive',b:'AURELIAN',t:'Motion, engineered.',d:'A premium dealership concept built around cinematic vehicle showcases.',h:'Drive the extraordinary',c:'Book a test drive',f:'Manrope,sans-serif',bg:'#0e0f10',ink:'#f3f0e9',ac:'#c9a96e',im:'linear-gradient(135deg,#8c6d3b,#1a1713 70%)',rd:'0',ir:'50% 0 0 50%',
@@ -360,6 +402,30 @@ const P=[
 const waMsg=m=>`https://wa.me/${WA}?text=${encodeURIComponent(m)}`;
 const vars=p=>`--bg:${p.bg};--ink:${p.ink};--ac:${p.ac};--f:${p.f};--im:${p.im};--rd:${p.rd};--ir:${p.ir}`;
 const miniHTML=p=>`<div class="mini" style="${vars(p)}"><div class="mn"><b>${p.b}</b><s></s><s></s><u>Menu</u></div><div class="mh"><h4>${p.h}</h4><p></p><p></p><em>${p.c}</em></div><div class="mi"></div></div>`;
+
+/* Scroll story: book opens, words appear, phone rises, then zooms into the closing line */
+const story=$('story');
+const pgL=$('pgL'),pgR=$('pgR'),stBook=$('stBook'),stWords=$('stWords'),stPhone=$('stPhone'),stFinal=$('stFinal');
+const sws=[...story.querySelectorAll('.sw')];
+stPhone.innerHTML=`<div class="phone">${miniHTML(P[0])}</div>`;
+const clamp01=x=>Math.max(0,Math.min(1,x));
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function storyFrame(){
+const total=Math.max(1,story.offsetHeight-innerHeight);
+const p=reduce?1:clamp01(-story.getBoundingClientRect().top/total);
+const open=clamp01(p/.25),words=clamp01((p-.25)/.25),rise=clamp01((p-.5)/.25),zoom=clamp01((p-.75)/.25);
+pgL.style.transform=`rotateY(${-120*open}deg)`;
+pgR.style.transform=`rotateY(${120*open}deg)`;
+stBook.style.opacity=1-clamp01((p-.22)/.1);
+sws.forEach((w,i)=>{const t=clamp01(words*sws.length-i);w.style.opacity=t;w.style.transform=`translateY(${(1-t)*16}px)`});
+stWords.style.opacity=1-clamp01((p-.45)/.06);
+stPhone.style.opacity=rise;
+stPhone.style.transform=`translate(-50%,calc(-50% + ${(1-rise)*60}px)) scale(${(.9+.1*rise)*(1+.14*zoom)})`;
+stFinal.style.opacity=zoom;
+}
+addEventListener('scroll',()=>requestAnimationFrame(storyFrame),{passive:true});
+addEventListener('resize',storyFrame);
+storyFrame();
 
 /* Concept cards */
 $('work-grid').innerHTML=P.map((p,i)=>`<article class="project"><div class="shot" aria-hidden="true">${miniHTML(p)}<span class="concept">Concept</span></div><div class="pbody"><small>${p.k} · Concept</small><h3>${p.t}</h3><p>${p.d}</p><button class="btn" data-i="${i}">View case study</button></div></article>`).join('');
@@ -400,7 +466,7 @@ const g=e.target.closest('[data-go]');if(g)location.hash='case-'+g.dataset.go;
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&cv.classList.contains('open'))location.hash='#work'});
 
 /* Magnetic solid buttons (fine pointers only) */
-if(matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.btn.solid,.nav-cta').forEach(el=>{el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.18}px,${(e.clientY-r.top-r.height/2)*.25}px)`});el.addEventListener('pointerleave',()=>el.style.transform='')});
+if(matchMedia('(pointer:fine)').matches&&!reduce)document.querySelectorAll('.btn.solid,.nav-cta').forEach(el=>{el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.18}px,${(e.clientY-r.top-r.height/2)*.25}px)`});el.addEventListener('pointerleave',()=>el.style.transform='')});
 
 /* WhatsApp form */
 const form=$('contactForm');
@@ -456,7 +522,7 @@ const v=new THREE.Mesh(g,gold);v.scale.setScalar(1.15);
 const grp=new THREE.Group();grp.add(v);
 
 /* Orbit rings */
-const rings=[[2.1,1.2,0],[2.55,-.4,.9],[3.0,.6,-.7]].map(([rad,rx,ry],i)=>{
+const rings=[[2.1,1.2,0],[2.55,-.4,.9],[3.0,.6,-.7]].map(([rad,rx,ry])=>{
 const t=new THREE.Mesh(new THREE.TorusGeometry(rad,.011,12,180),ringMat);
 t.rotation.set(rx,ry,0);grp.add(t);
 const d=new THREE.Mesh(new THREE.SphereGeometry(.05,12,12),ringMat);t.add(d);d.position.set(rad,0,0);
@@ -465,42 +531,4 @@ return t});
 /* Particle dust */
 const N=70,pos=new Float32Array(N*3);
 for(let i=0;i<N;i++){const a=Math.random()*Math.PI*2,rr=2.2+Math.random()*2.8;pos[i*3]=Math.cos(a)*rr;pos[i*3+1]=(Math.random()-.5)*4;pos[i*3+2]=Math.sin(a)*rr*.6}
-const dg=new THREE.BufferGeometry();dg.setAttribute('position',new THREE.BufferAttribute(pos,3));
-const dust=new THREE.Points(dg,new THREE.PointsMaterial({color:0xead6ad,size:.035,transparent:true,opacity:.7,depthWrite:false}));
-scene.add(dust);
-scene.add(grp);
-
-function size(){const w=stage.clientWidth,h=stage.clientHeight;r.setSize(w,h,false);cam.aspect=w/h;cam.position.z=w<500?9:7;cam.updateProjectionMatrix()}
-size();addEventListener('resize',size);
-
-let tx=0,ty=0,cx=0,cy=0,vis=true;
-stage.addEventListener('pointermove',e=>{const b=stage.getBoundingClientRect();tx=((e.clientX-b.left)/b.width-.5)*1.2;ty=((e.clientY-b.top)/b.height-.5)*.8});
-stage.addEventListener('pointerleave',()=>{tx=ty=0});
-new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(stage);
-
-const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
-const clock=new THREE.Clock();
-function frame(){
-if(vis){
-const t=clock.getElapsedTime();
-const k=Math.min(1,t/1.8),ease=1-Math.pow(1-k,3);
-cx+=(tx-cx)*.06;cy+=(ty-cy)*.06;
-if(!still){
-grp.rotation.y=Math.sin(t*.5)*.45+cx;
-grp.position.y=Math.sin(t*.9)*.12;
-rings[0].rotation.z=t*.3;rings[1].rotation.z=-t*.22;rings[2].rotation.z=t*.14;
-dust.rotation.y=t*.05;
-}else{grp.rotation.y=cx;}
-grp.rotation.x=cy;
-grp.scale.setScalar(.55+.45*ease);
-r.render(scene,cam);
-}
-if(!still)requestAnimationFrame(frame);
-}
-frame();
-stage.classList.add('on');
-}catch(e){console.warn('3D unavailable, showing CSS orb',e)}
-})();
-</script>
-</body>
- </html>
+const
