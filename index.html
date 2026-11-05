@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#090a0b;--gold:#c9a96e;--gold2:#ead6ad;--white:#f3f0e9;--muted:#a8a59d;--line:rgba(234,214,173,.16);--max:1180px}
+:root{--bg:#090a0b;--gold:#c9a96e;--gold2:#ead6ad;--white:#f3f0e9;--muted:#a8a59d;--line:rgba(234,214,173,.16);--max:1180px;--ease:cubic-bezier(.2,.7,.2,1)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--white);font-family:"DM Sans",sans-serif;line-height:1.65;overflow-x:hidden}
@@ -38,17 +38,22 @@ nav a:hover,.text-link:hover{color:var(--gold2)}
 .btn:hover,.nav-cta:hover{background:var(--gold);color:#111}
 .btn.solid{background:var(--gold);color:#111;font-weight:700}.btn.solid:hover{background:var(--gold2)}
 .menu{display:none;background:none;border:0;color:#fff;font-size:1.6rem;min-width:44px;min-height:44px}
-.hero{min-height:780px;height:100svh;max-height:980px;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 0 60px;background:radial-gradient(ellipse at 74% 47%,rgba(154,119,63,.2),transparent 40%),linear-gradient(115deg,#090a0b 30%,#0d0f10)}
+
+/* HERO */
+.hero{min-height:780px;height:100svh;max-height:980px;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 0 60px;background:radial-gradient(ellipse at 74% 47%,rgba(154,119,63,.22),transparent 42%),linear-gradient(115deg,#090a0b 30%,#0d0f10)}
 .hero-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:10px;position:relative;z-index:2}
 .hero h1{font-weight:600;font-size:clamp(3.4rem,7.4vw,7rem);line-height:1;margin:22px 0 24px;letter-spacing:-.08em}
 .hero h1 em,.gold{font-style:normal;color:var(--gold2)}
-.hero-copy{max-width:500px;color:#b0ada5}
-.hero-actions{display:flex;align-items:center;gap:22px;margin-top:34px;flex-wrap:wrap}
+.w{display:inline-block;opacity:0;transform:translateY(.35em);animation:wu 1.1s var(--ease) forwards;animation-delay:calc(var(--d) * 85ms + 150ms)}
+@keyframes wu{to{opacity:1;transform:none}}
+.hero-copy{max-width:500px;color:#b0ada5;animation:up 1s var(--ease) .6s both}
+.hero-actions{display:flex;align-items:center;gap:22px;margin-top:34px;flex-wrap:wrap;animation:up 1s var(--ease) .75s both}
+.hero .eyebrow{animation:up 1s var(--ease) both}
 .text-link{font-size:.84rem;color:#d7d1c5}
-.hero h1,.hero .eyebrow,.hero-copy,.hero-actions{animation:up 1s cubic-bezier(.2,.7,.2,1) both}
-.hero h1{animation-delay:.15s}.hero-copy{animation-delay:.35s}.hero-actions{animation-delay:.5s}
-@keyframes up{from{opacity:0;transform:translateY(30px)}}
+@keyframes up{from{opacity:0;transform:translateY(24px)}}
 .stage{height:540px;position:relative;touch-action:pan-y}
+.stage:before{content:"";position:absolute;inset:12% 8%;background:radial-gradient(circle,rgba(201,169,110,.2),transparent 62%);filter:blur(24px);animation:breathe 9s ease-in-out infinite;pointer-events:none}
+@keyframes breathe{50%{opacity:.55;transform:scale(1.07)}}
 #gl{position:absolute;inset:0;width:100%;height:100%;display:block}
 .stage .fallback{position:absolute;inset:0;display:grid;place-items:center}
 .orb{width:min(330px,70vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 32% 25%,#fff0cf 0,#c7a56b 5%,#745b37 18%,#1b1b18 44%,#080909 67%);box-shadow:inset -25px -30px 55px #000,0 0 90px rgba(201,169,110,.15);animation:float 7s ease-in-out infinite}
@@ -58,29 +63,45 @@ nav a:hover,.text-link:hover{color:var(--gold2)}
 .ticker{border-block:1px solid var(--line);padding:18px 0;color:#b3a98f;overflow:hidden;white-space:nowrap;font:600 .72rem Manrope;letter-spacing:.2em;text-transform:uppercase}
 .ticker div{display:inline-block;animation:tick 40s linear infinite}
 @keyframes tick{to{transform:translateX(-50%)}}
-section{padding:110px 0}
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:50px}
-.section-head h2,.about h2,.contact h2{font-weight:600;font-size:clamp(2.4rem,5vw,4.4rem);line-height:1.04;margin:14px 0 0}
+
+/* SECTIONS */
+section{padding:120px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:56px}
+.section-head h2,.about h2,.contact h2{font-weight:600;font-size:clamp(2.4rem,5.2vw,4.6rem);line-height:1.02;margin:14px 0 0}
 .section-head p{max-width:340px;color:var(--muted);font-size:.9rem;margin:0}
+
+/* SERVICES: editorial rows */
 .services,.approach{background:#0d0f10}
-.service-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.service{padding:30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:background .3s}
-.service:hover{background:#151719}
-.service h3{font-size:1.22rem;font-weight:600;margin:0 0 10px}
-.service p{color:var(--muted);font-size:.86rem;margin:0 0 14px}
-.service ul{margin:0;padding:0;list-style:none;color:#8f8b82;font-size:.78rem}
-.service li:before{content:"— ";color:var(--gold)}
+.svc-list{border-top:1px solid var(--line)}
+.svc{position:relative;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:34px;align-items:center;padding:40px 0;border-bottom:1px solid var(--line);overflow:hidden}
+.svc:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.25fr)}
+.svc:nth-child(even) h3{order:2}
+.svc:nth-child(even) .svc-d{order:1}
+.svc::before{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:linear-gradient(90deg,var(--gold),transparent 80%);transform:scaleX(0);transform-origin:left;transition:transform 1s var(--ease)}
+.svc:hover::before{transform:scaleX(1)}
+.svc h3{font-size:clamp(1.9rem,4vw,3.4rem);line-height:1;margin:0;font-weight:600;transition:color .5s,transform .8s var(--ease)}
+.svc:hover h3{color:var(--gold2);transform:translateX(14px)}
+.svc:nth-child(even):hover h3{transform:translateX(-14px)}
+.svc-d p{color:var(--muted);font-size:.98rem;margin:0 0 16px;max-width:420px}
+.svc-d ul{margin:0;padding:0;list-style:none;color:#8f8b82;font-size:.86rem}
+.svc-d li{padding:3px 0}
+.svc-d li:before{content:"— ";color:var(--gold)}
+
+/* CONCEPTS */
 .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.project{border:1px solid var(--line);background:#0f1112;display:flex;flex-direction:column;transition:transform .3s,border-color .3s}
-.project:hover{transform:translateY(-4px);border-color:rgba(234,214,173,.45)}
+.project{border:1px solid var(--line);background:#0f1112;display:flex;flex-direction:column;transition:transform .4s var(--ease),border-color .4s}
+.project:first-child{grid-column:span 2}
+.project:hover{transform:translateY(-5px);border-color:rgba(234,214,173,.45)}
 .shot{height:230px;position:relative;overflow:hidden;background:#0b0c0d;padding:18px 18px 0}
-.mini{height:100%;background:var(--bg);color:var(--ink);font-family:var(--f);border-radius:8px 8px 0 0;box-shadow:0 20px 50px rgba(0,0,0,.6);position:relative;overflow:hidden;transition:transform .5s}
+.project:first-child .shot{height:340px;padding:26px 26px 0}
+.mini{height:100%;background:var(--bg);color:var(--ink);font-family:var(--f);border-radius:8px 8px 0 0;box-shadow:0 20px 50px rgba(0,0,0,.6);position:relative;overflow:hidden;transition:transform .6s var(--ease)}
 .project:hover .mini{transform:translateY(-6px) scale(1.02)}
 .mn{display:flex;align-items:center;gap:8px;padding:9px 12px;font-size:.6rem;border-bottom:1px solid rgba(128,128,128,.2)}
 .mn b{margin-right:auto;letter-spacing:.12em}.mn s{width:22px;height:3px;background:currentColor;opacity:.3}
 .mn u{text-decoration:none;background:var(--ac);color:var(--bg);padding:3px 8px;border-radius:var(--rd)}
 .mh{padding:14px 12px;width:58%}
 .mh h4{margin:0 0 8px;font-size:1.05rem;line-height:1.05;letter-spacing:-.03em;font-weight:700}
+.project:first-child .mh h4{font-size:1.6rem}
 .mh p{margin:0 0 4px;height:4px;background:currentColor;opacity:.25;width:90%}.mh p+p{width:65%}
 .mh em{display:inline-block;margin-top:8px;font-style:normal;font-size:.55rem;background:var(--ac);color:var(--bg);padding:4px 9px;border-radius:var(--rd)}
 .mi{position:absolute;right:-6%;top:34px;width:46%;height:75%;background:var(--im);border-radius:var(--ir);box-shadow:0 0 40px var(--ac)}
@@ -90,39 +111,52 @@ section{padding:110px 0}
 .pbody h3{font-size:1.45rem;font-weight:600;margin:0}
 .pbody p{color:var(--muted);font-size:.84rem;margin:0}
 .pbody .btn{margin-top:auto;align-self:flex-start;padding:10px 14px}
+
+/* ABOUT */
 .about{background:radial-gradient(ellipse at 20% 50%,rgba(201,169,110,.08),transparent 60%)}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:end}
 .about p{color:var(--muted);max-width:480px}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.step{border-top:1px solid var(--gold);padding-top:18px}
-.step strong{font:600 2rem Manrope;color:var(--gold)}
-.step h3{font-size:1.1rem;margin:20px 0 7px}
-.step p{color:var(--muted);font-size:.84rem;margin:0}
+
+/* PROCESS: timeline */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+.steps:before{content:"";position:absolute;left:0;right:0;top:4px;height:1px;background:linear-gradient(90deg,var(--gold),rgba(201,169,110,.12))}
+.step{position:relative;padding-top:38px}
+.step:before{content:"";position:absolute;top:0;left:0;width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px var(--gold)}
+.step strong{font:600 2.4rem Manrope;color:var(--gold2);display:block;margin-bottom:12px}
+.step h3{font-size:1.15rem;margin:0 0 8px}
+.step p{color:var(--muted);font-size:.86rem;margin:0}
+
+/* CONTACT */
 .contact{background:#111315}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
 .contact-copy{color:var(--muted);max-width:430px}
 .wa-link{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap}
-.contact-form{display:grid;gap:16px}
+.contact-form{display:grid;gap:18px;background:#0b0c0d;border:1px solid var(--line);border-top:1px solid var(--gold);padding:34px}
 .field label{display:block;color:#c5bfb2;font-size:.76rem;margin-bottom:7px}
 .field input,.field textarea,.field select{width:100%;background:#090a0b;border:1px solid rgba(255,255,255,.18);padding:14px;color:#fff;font:inherit;font-size:1rem;border-radius:0}
 .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold);outline:none}
 .field textarea{min-height:120px;resize:vertical}
 .err{color:#f0a58f;font-size:.74rem;min-height:1em;display:block;margin-top:4px}
 .form-note{color:#9a968c;font-size:.76rem}
-.wa-float{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;align-items:center;gap:10px;background:var(--gold);color:#111;padding:14px 18px;border-radius:40px;font-weight:700;font-size:.84rem;box-shadow:0 10px 30px rgba(0,0,0,.5);transition:transform .2s}
+
+/* FLOATING WHATSAPP */
+.wa-float{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;align-items:center;gap:10px;background:var(--gold);color:#111;padding:14px 18px;border-radius:40px;font-weight:700;font-size:.84rem;box-shadow:0 10px 30px rgba(0,0,0,.5);transition:transform .3s var(--ease),opacity .3s,background .2s}
 .wa-float:hover{transform:translateY(-2px);background:var(--gold2)}
+.wa-float.hide{opacity:0;pointer-events:none;transform:translateY(14px)}
 .wa-float svg{width:20px;height:20px;fill:#111}
-footer{padding:50px 0 90px;border-top:1px solid var(--line);color:#8d897f;font-size:.8rem}
+
+/* FOOTER */
+footer{padding:56px 0 90px;border-top:1px solid var(--line);color:#8d897f;font-size:.8rem}
 .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
 .foot b{display:block;color:var(--white);font:800 .95rem Manrope;letter-spacing:.16em;margin-bottom:8px}
 .foot h4{margin:0 0 10px;color:var(--gold);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase}
 .foot a{display:block;padding:3px 0}.foot a:hover{color:var(--gold2)}
 .copy{margin-top:34px;padding-top:20px;border-top:1px solid var(--line)}
-.rv{opacity:0;transform:translateY(22px);transition:opacity .8s,transform .8s}.rv.in{opacity:1;transform:none}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}.rv.in{opacity:1;transform:none}
 
-/* Case study page */
+/* CASE STUDY PAGE */
 .cv{position:fixed;inset:0;z-index:40;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch;display:none}
-.cv.open{display:block;animation:cvin .5s cubic-bezier(.2,.7,.2,1)}
+.cv.open{display:block;animation:cvin .5s var(--ease)}
 @keyframes cvin{from{opacity:0;transform:translateY(16px)}}
 .cv-top{position:sticky;top:0;z-index:2;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(9,10,11,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .cv-back{background:none;border:0;color:var(--gold2);font:inherit;font-size:.84rem;letter-spacing:.04em;cursor:pointer;min-height:44px;padding:0 4px}
@@ -151,9 +185,52 @@ footer{padding:50px 0 90px;border-top:1px solid var(--line);color:#8d897f;font-s
 .cv-next button:hover{color:var(--gold)}
 .cv-note{border:1px solid var(--line);padding:14px 16px;font-size:.82rem;color:#b9b3a6;margin:40px 0 0}
 
-@media(max-width:900px){nav{gap:16px}.hero{height:auto;min-height:860px}.hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:30px}.stage{height:360px}.section-head{display:block}.section-head p{margin-top:16px}.service-grid,.work-grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.foot{grid-template-columns:1fr 1fr}.cv-intro,.cv-cols,.cv-resp{grid-template-columns:1fr;gap:28px}}
-@media(max-width:600px){.wrap,.cv-wrap{width:calc(100% - 36px)}.cv-wrap{width:calc(100% - 36px)}.cv-top{padding:0 14px}.nav{height:68px}.menu{display:block}nav{display:none;position:absolute;top:68px;left:0;right:0;background:#0d0f10;padding:16px 24px 24px;flex-direction:column;border-bottom:1px solid var(--line)}nav a{padding:10px 0}nav.open{display:flex}.nav-cta{display:none}.hero{padding-top:105px}.hero h1{font-size:clamp(3.1rem,14vw,4.6rem)}.stage{height:320px}section{padding:76px 0}.service-grid,.work-grid{grid-template-columns:1fr}.steps{gap:26px 16px}.wa-float span{display:none}.wa-float{padding:15px}.logo{width:32px;height:32px}.cv-screen{height:200px}.phone{width:180px}.cv-resp{justify-items:center;text-align:center}.cv-resp p{text-align:left}.cv-next{flex-direction:column;align-items:flex-start}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+@media(max-width:900px){
+nav{gap:16px}
+.hero{height:auto;min-height:860px}
+.hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:30px}
+.stage{height:380px}
+.section-head{display:block}.section-head p{margin-top:16px}
+.svc,.svc:nth-child(even){grid-template-columns:1fr;gap:18px}
+.svc:nth-child(even) h3,.svc:nth-child(even) .svc-d{order:0}
+.work-grid{grid-template-columns:repeat(2,1fr)}
+.steps{grid-template-columns:repeat(2,1fr);row-gap:44px}
+.steps:before{display:none}
+.foot{grid-template-columns:1fr 1fr}
+.cv-intro,.cv-cols,.cv-resp{grid-template-columns:1fr;gap:28px}
+}
+@media(max-width:600px){
+.wrap,.cv-wrap{width:calc(100% - 36px)}
+.cv-top{padding:0 14px}
+.nav{height:68px}
+.menu{display:block}
+nav{display:none;position:absolute;top:68px;left:0;right:0;background:#0d0f10;padding:16px 24px 24px;flex-direction:column;border-bottom:1px solid var(--line)}
+nav a{padding:10px 0}nav.open{display:flex}
+.nav-cta{display:none}
+.hero{padding-top:105px}
+.hero h1{font-size:clamp(3.1rem,14vw,4.6rem)}
+.stage{height:330px}
+section{padding:84px 0}
+.work-grid{grid-template-columns:1fr}
+.project:first-child{grid-column:auto}
+.project:first-child .shot{height:230px;padding:18px 18px 0}
+.steps{grid-template-columns:1fr;gap:34px}
+.steps:before{display:block;left:4px;right:auto;top:0;bottom:0;width:1px;height:auto;background:linear-gradient(var(--gold),rgba(201,169,110,.08))}
+.step{padding:0 0 0 34px}
+.step:before{top:4px}
+.step strong{font-size:1.6rem;margin-bottom:8px}
+.contact-form{padding:22px}
+.wa-float{right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));width:54px;height:54px;padding:0;justify-content:center}
+.wa-float span{display:none}
+footer{padding-bottom:120px}
+.cv-screen{height:200px}
+.phone{width:180px}
+.cv-resp{justify-items:center;text-align:center}
+.cv-resp p{text-align:left}
+.cv-next{flex-direction:column;align-items:flex-start}
+.logo{width:32px;height:32px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}.w{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -164,30 +241,33 @@ footer{padding:50px 0 90px;border-top:1px solid var(--line);color:#8d897f;font-s
 <a class="nav-cta" href="#contact">Start a project</a>
 <button class="menu" id="menu" aria-label="Open navigation" aria-expanded="false" aria-controls="nav">☰</button>
 </div></header>
+
 <main id="main">
 <section class="hero" id="home"><div class="wrap hero-grid">
 <div>
 <div class="eyebrow">Independent digital studio</div>
-<h1>Design the <em>future.</em> Build the extraordinary.</h1>
+<h1 aria-label="Design the future. Build the extraordinary."><span class="w" style="--d:0" aria-hidden="true">Design</span> <span class="w" style="--d:1" aria-hidden="true">the</span> <span class="w" style="--d:2" aria-hidden="true"><em>future.</em></span><br><span class="w" style="--d:3" aria-hidden="true">Build</span> <span class="w" style="--d:4" aria-hidden="true">the</span> <span class="w" style="--d:5" aria-hidden="true">extraordinary.</span></h1>
 <p class="hero-copy">We turn ambitious ideas into distinctive websites, digital products and immersive experiences, with careful design and precise engineering.</p>
 <div class="hero-actions"><a class="btn solid" href="#contact">Start a project</a><a class="text-link" href="#work">See our concepts ↓</a></div>
 </div>
-<div class="stage" id="stage" role="img" aria-label="Rotating champagne-gold V monogram with orbiting rings">
+<div class="stage" id="stage" role="img" aria-label="Metallic champagne-gold V monogram with orbiting rings">
 <div class="fallback"><div class="orb"></div></div><canvas id="gl"></canvas>
 <div class="cap">Drag or move to tilt</div>
 </div></div></section>
+
 <div class="ticker" aria-hidden="true"><div>Web design ✳ UI/UX ✳ 3D experiences ✳ Branding ✳ Web apps ✳ Automation ✳ Web design ✳ UI/UX ✳ 3D experiences ✳ Branding ✳ Web apps ✳ Automation ✳ </div></div>
 
 <section class="services" id="services"><div class="wrap">
 <div class="section-head rv"><div><div class="eyebrow">Services</div><h2>Digital, made <span class="gold">remarkable.</span></h2></div><p>Six disciplines, one studio. Each is shaped around your goals and your audience.</p></div>
-<div class="service-grid rv">
-<article class="service"><h3>Website Design & Development</h3><p>Fast, responsive sites built to make brands stand out.</p><ul><li>Business and corporate</li><li>E-commerce</li><li>School, real estate, hospitality, automotive</li></ul></article>
-<article class="service"><h3>UI/UX Design</h3><p>Clear journeys shaped around real people.</p><ul><li>Interface and experience design</li><li>Responsive design</li><li>Website prototyping</li></ul></article>
-<article class="service"><h3>3D & Interactive Web</h3><p>Visual experiences that bring products and stories to life.</p><ul><li>3D hero sections</li><li>Interactive product showcases</li><li>Three.js experiences</li></ul></article>
-<article class="service"><h3>Branding & Visual Identity</h3><p>Brand systems that stay consistent everywhere.</p><ul><li>Logo design</li><li>Brand identity</li><li>Digital brand assets</li></ul></article>
-<article class="service"><h3>Web Apps & Digital Products</h3><p>Tools designed around the way your business works.</p><ul><li>Custom web applications</li><li>Admin dashboards</li><li>Database-powered apps</li></ul></article>
-<article class="service"><h3>Automation & Digital Solutions</h3><p>Smarter workflows for your team.</p><ul><li>Workflow automation</li><li>Process improvements</li><li>Digital integrations</li></ul></article>
-</div></div></section>
+<div class="svc-list">
+<article class="svc rv"><h3>Website Design & Development</h3><div class="svc-d"><p>Fast, responsive sites built to make brands stand out.</p><ul><li>Business and corporate</li><li>E-commerce</li><li>School, real estate, hospitality, automotive</li></ul></div></article>
+<article class="svc rv"><h3>UI/UX Design</h3><div class="svc-d"><p>Clear journeys shaped around real people.</p><ul><li>Interface and experience design</li><li>Responsive design</li><li>Website prototyping</li></ul></div></article>
+<article class="svc rv"><h3>3D & Interactive Web</h3><div class="svc-d"><p>Visual experiences that bring products and stories to life.</p><ul><li>3D hero sections</li><li>Interactive product showcases</li><li>Three.js experiences</li></ul></div></article>
+<article class="svc rv"><h3>Branding & Visual Identity</h3><div class="svc-d"><p>Brand systems that stay consistent everywhere.</p><ul><li>Logo design</li><li>Brand identity</li><li>Digital brand assets</li></ul></div></article>
+<article class="svc rv"><h3>Web Apps & Digital Products</h3><div class="svc-d"><p>Tools designed around the way your business works.</p><ul><li>Custom web applications</li><li>Admin dashboards</li><li>Database-powered apps</li></ul></div></article>
+<article class="svc rv"><h3>Automation & Digital Solutions</h3><div class="svc-d"><p>Smarter workflows for your team.</p><ul><li>Workflow automation</li><li>Process improvements</li><li>Digital integrations</li></ul></div></article>
+</div>
+</div></section>
 
 <section id="work"><div class="wrap">
 <div class="section-head rv"><div><div class="eyebrow">Concept work</div><h2>Ideas with a <span class="gold">point of view.</span></h2></div><p>Six concept explorations across industries. They are self-initiated studio concepts with fictional brands, not client projects.</p></div>
@@ -209,13 +289,13 @@ footer{padding:50px 0 90px;border-top:1px solid var(--line);color:#8d897f;font-s
 </div></div></section>
 
 <section class="contact" id="contact"><div class="wrap contact-grid">
-<div>
+<div class="rv">
 <div class="eyebrow">Contact</div>
 <h2>Have an idea? <span class="gold">Message us on WhatsApp.</span></h2>
 <p class="contact-copy">Fill in the form and WhatsApp opens with your message ready. Review it, then tap send. Or chat with us directly.</p>
 <div class="wa-link"><a class="btn solid" href="https://wa.me/2348105761818" target="_blank" rel="noopener">Chat on WhatsApp</a><a class="btn" href="tel:+2348105761818">Call +234 810 576 1818</a></div>
 </div>
-<form class="contact-form" id="contactForm" novalidate>
+<form class="contact-form rv" id="contactForm" novalidate>
 <div class="field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required aria-describedby="e-name"><span class="err" id="e-name"></span></div>
 <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" required aria-describedby="e-email"><span class="err" id="e-email"></span></div>
 <div class="field"><label for="service">Service required</label><select id="service" name="service"><option>Website design & development</option><option>UI/UX design</option><option>3D & interactive web</option><option>Branding & visual identity</option><option>Web app or digital product</option><option>Automation & digital solutions</option><option>Something else</option></select></div>
@@ -226,7 +306,7 @@ footer{padding:50px 0 90px;border-top:1px solid var(--line);color:#8d897f;font-s
 </div></section>
 </main>
 
-<a class="wa-float" href="https://wa.me/2348105761818?text=Hello%20VELTRIX%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener" aria-label="Chat with VELTRIX on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.1.1.6-.1 1.2z"/></svg><span>WhatsApp us</span></a>
+<a class="wa-float" id="waFloat" href="https://wa.me/2348105761818?text=Hello%20VELTRIX%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener" aria-label="Chat with VELTRIX on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.1.1.6-.1 1.2z"/></svg><span>WhatsApp us</span></a>
 
 <footer><div class="wrap">
 <div class="foot">
@@ -245,6 +325,10 @@ const menu=$('menu'),nav=$('nav');
 menu.addEventListener('click',()=>{const o=nav.classList.toggle('open');menu.setAttribute('aria-expanded',o)});
 nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded',false)}));
 $('year').textContent=new Date().getFullYear();
+
+/* Hide the floating WhatsApp button while the contact form is on screen */
+const fl=$('waFloat');
+new IntersectionObserver(es=>es.forEach(e=>fl.classList.toggle('hide',e.isIntersecting)),{threshold:.2}).observe($('contactForm'));
 
 /* Concept data (fictional brands, self-initiated concepts) */
 const P=[
@@ -298,7 +382,7 @@ cv.innerHTML=`<div class="cv-top"><button class="cv-back" id="cvb">← Back to c
 <section class="cv-cols"><div><div class="eyebrow">The idea</div></div><div><p>${p.idea}</p></div></section>
 <section class="cv-cols"><div><div class="eyebrow">Design decisions</div></div><div><ul>${p.x.map(v=>`<li>${v}</li>`).join('')}</ul></div></section>
 <section class="cv-cols"><div><div class="eyebrow">Planned features</div></div><div><ul>${p.y.map(v=>`<li>${v}</li>`).join('')}</ul></div></section>
-<section class="cv-resp"><div class="phone" aria-hidden="true" style="--x:0">${miniHTML(p)}</div><div><div class="eyebrow" style="margin-bottom:10px">Responsive</div><p>On a phone the main action stays within thumb reach, and the layout stacks into one column without losing its character.</p></div></section>
+<section class="cv-resp"><div class="phone" aria-hidden="true">${miniHTML(p)}</div><div><div class="eyebrow" style="margin-bottom:10px">Responsive</div><p>On a phone the main action stays within thumb reach, and the layout stacks into one column without losing its character.</p></div></section>
 <p class="cv-note">Concept work. A self-initiated VELTRIX exploration, not a client project. No real business is represented.</p>
 <nav class="cv-next" aria-label="Concept navigation"><button data-go="${prev}">← ${P[prev].k}</button><button data-go="${next}">${P[next].k} →</button></nav>
 </div>`;
@@ -337,41 +421,86 @@ if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.fo
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-/* 3D hero: champagne-gold V monogram + orbit rings. Falls back to the CSS orb if WebGL is unavailable. */
+/* 3D hero: metallic champagne-gold V, orbit rings and particles. Falls back to the CSS orb if WebGL is unavailable. */
 (function(){
 try{
 if(!window.THREE)return;
 const stage=$('stage'),cv=$('gl');
 const r=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true,powerPreference:'low-power'});
 r.setPixelRatio(Math.min(devicePixelRatio,2));
-const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(35,1,.1,50);cam.position.z=7;
+const scene=new THREE.Scene();
+const cam=new THREE.PerspectiveCamera(35,1,.1,60);cam.position.z=7;
+
+/* Studio environment for metal reflections: dark room with warm light panels */
 const env=new THREE.Scene();
-[[0xfff3da,6,[0,6,2]],[0xc9a96e,4,[-6,0,2]],[0xffffff,3,[6,-2,3]],[0x4a3a22,2,[0,-6,0]]].forEach(l=>{const m=new THREE.Mesh(new THREE.BoxGeometry(l[1]*2,l[1]*2,.2),new THREE.MeshBasicMaterial({color:l[0]}));m.position.set(...l[2]);m.lookAt(0,0,0);env.add(m)});
-const pm=new THREE.PMREMGenerator(r);scene.environment=pm.fromScene(env,.04).texture;
-const gold=new THREE.MeshStandardMaterial({color:0xd4b27a,metalness:1,roughness:.22,envMapIntensity:1.2});
+env.add(new THREE.Mesh(new THREE.SphereGeometry(20,32,16),new THREE.MeshBasicMaterial({color:0x17120c,side:THREE.BackSide})));
+[[0xfff3da,7,5,[0,8,3]],[0xd4b27a,5,9,[-9,1,4]],[0xffffff,4,6,[9,-2,2]],[0x3a2c18,6,6,[0,-9,0]]].forEach(l=>{
+const m=new THREE.Mesh(new THREE.PlaneGeometry(l[1],l[2]),new THREE.MeshBasicMaterial({color:l[0],side:THREE.DoubleSide}));
+m.position.set(...l[3]);m.lookAt(0,0,0);env.add(m)});
+const pm=new THREE.PMREMGenerator(r);
+scene.environment=pm.fromScene(env,.04).texture;
+
+/* Lights */
+const key=new THREE.DirectionalLight(0xfff0d0,1.4);key.position.set(3,4,5);scene.add(key);
+const rim=new THREE.DirectionalLight(0xc9a96e,1.1);rim.position.set(-4,-1,-3);scene.add(rim);
+scene.add(new THREE.AmbientLight(0x221a10,.6));
+
+/* Materials */
+const gold=new THREE.MeshPhysicalMaterial({color:0xd6b47a,metalness:1,roughness:.2,clearcoat:.7,clearcoatRoughness:.12,envMapIntensity:1.5});
+const ringMat=new THREE.MeshStandardMaterial({color:0xd4b27a,metalness:1,roughness:.3});
+
+/* V monogram */
 const s=new THREE.Shape();[[-1,1],[-.5,1],[0,-.25],[.5,1],[1,1],[.26,-1.1],[-.26,-1.1]].forEach((p,i)=>i?s.lineTo(p[0],p[1]):s.moveTo(p[0],p[1]));
 const g=new THREE.ExtrudeGeometry(s,{depth:.4,bevelEnabled:true,bevelThickness:.06,bevelSize:.06,bevelSegments:4});g.center();
 const v=new THREE.Mesh(g,gold);v.scale.setScalar(1.15);
 const grp=new THREE.Group();grp.add(v);
-const rings=[0,1].map(i=>{const t=new THREE.Mesh(new THREE.TorusGeometry(2.1+i*.45,.012,12,160),gold);t.rotation.set(1.2-i*1.6,i*.9,0);grp.add(t);const d=new THREE.Mesh(new THREE.SphereGeometry(.05,12,12),gold);t.add(d);d.position.set(2.1+i*.45,0,0);return t});
+
+/* Orbit rings */
+const rings=[[2.1,1.2,0],[2.55,-.4,.9],[3.0,.6,-.7]].map(([rad,rx,ry],i)=>{
+const t=new THREE.Mesh(new THREE.TorusGeometry(rad,.011,12,180),ringMat);
+t.rotation.set(rx,ry,0);grp.add(t);
+const d=new THREE.Mesh(new THREE.SphereGeometry(.05,12,12),ringMat);t.add(d);d.position.set(rad,0,0);
+return t});
+
+/* Particle dust */
+const N=70,pos=new Float32Array(N*3);
+for(let i=0;i<N;i++){const a=Math.random()*Math.PI*2,rr=2.2+Math.random()*2.8;pos[i*3]=Math.cos(a)*rr;pos[i*3+1]=(Math.random()-.5)*4;pos[i*3+2]=Math.sin(a)*rr*.6}
+const dg=new THREE.BufferGeometry();dg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+const dust=new THREE.Points(dg,new THREE.PointsMaterial({color:0xead6ad,size:.035,transparent:true,opacity:.7,depthWrite:false}));
+scene.add(dust);
 scene.add(grp);
+
 function size(){const w=stage.clientWidth,h=stage.clientHeight;r.setSize(w,h,false);cam.aspect=w/h;cam.position.z=w<500?9:7;cam.updateProjectionMatrix()}
 size();addEventListener('resize',size);
+
 let tx=0,ty=0,cx=0,cy=0,vis=true;
 stage.addEventListener('pointermove',e=>{const b=stage.getBoundingClientRect();tx=((e.clientX-b.left)/b.width-.5)*1.2;ty=((e.clientY-b.top)/b.height-.5)*.8});
 stage.addEventListener('pointerleave',()=>{tx=ty=0});
 new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(stage);
+
 const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const clock=new THREE.Clock();
-function draw(){
-if(vis){const t=clock.getElapsedTime();cx+=(tx-cx)*.06;cy+=(ty-cy)*.06;
-if(!still){v.rotation.y=Math.sin(t*.6)*.5;grp.position.y=Math.sin(t*.9)*.12;rings[0].rotation.z=t*.3;rings[1].rotation.z=-t*.22}
-grp.rotation.y=cx;grp.rotation.x=cy;r.render(scene,cam)}
-if(!still)requestAnimationFrame(draw)}
-draw();if(still)r.render(scene,cam);
+function frame(){
+if(vis){
+const t=clock.getElapsedTime();
+const k=Math.min(1,t/1.8),ease=1-Math.pow(1-k,3);
+cx+=(tx-cx)*.06;cy+=(ty-cy)*.06;
+if(!still){
+grp.rotation.y=Math.sin(t*.5)*.45+cx;
+grp.position.y=Math.sin(t*.9)*.12;
+rings[0].rotation.z=t*.3;rings[1].rotation.z=-t*.22;rings[2].rotation.z=t*.14;
+dust.rotation.y=t*.05;
+}else{grp.rotation.y=cx;}
+grp.rotation.x=cy;
+grp.scale.setScalar(.55+.45*ease);
+r.render(scene,cam);
+}
+if(!still)requestAnimationFrame(frame);
+}
+frame();
 stage.classList.add('on');
 }catch(e){console.warn('3D unavailable, showing CSS orb',e)}
 })();
 </script>
 </body>
-                                                         </html>
+ </html>
