@@ -10,7 +10,9 @@
 <meta property="og:title" content="VELTRIX — Design the Future. Build the Extraordinary.">
 <meta property="og:description" content="An independent digital studio for distinctive websites, products and immersive experiences.">
 <meta property="og:url" content="https://veltrix-website.pages.dev">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://veltrix-website.pages.dev/veltrix-share.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://veltrix-website.pages.dev/veltrix-share.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23090a0b'/%3E%3Cpath d='M9 10L20 31L31 10' fill='none' stroke='%23c9a96e' stroke-width='3.4'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,23 +28,26 @@ a{color:inherit;text-decoration:none}
 .wrap{width:min(var(--max),calc(100% - 48px));margin:auto}
 .eyebrow{color:var(--gold);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
 h1,h2,h3{font-family:Manrope,sans-serif;letter-spacing:-.06em}
-header{position:fixed;z-index:20;inset:0 0 auto;background:rgba(9,10,11,.82);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06)}
+header.site{position:fixed;z-index:20;inset:0 0 auto;background:rgba(9,10,11,.82);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06)}
 .nav{height:78px;display:flex;align-items:center;justify-content:space-between}
 .brand{display:flex;align-items:center;gap:12px;font:800 1.05rem Manrope;letter-spacing:.17em}
 .logo{width:38px;height:38px;flex:none}
 nav{display:flex;gap:28px;color:#c4c0b7;font-size:.84rem}
 nav a:hover,.text-link:hover{color:var(--gold2)}
-.btn,.nav-cta{display:inline-block;border:1px solid var(--gold);padding:13px 20px;color:var(--gold2);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;transition:background .25s,color .25s,transform .2s;background:none;cursor:pointer;font-family:inherit}
+.btn,.nav-cta{display:inline-block;border:1px solid var(--gold);padding:13px 20px;color:var(--gold2);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;transition:background .25s,color .25s,transform .2s;background:none;cursor:pointer;font-family:inherit;min-height:44px}
 .btn:hover,.nav-cta:hover{background:var(--gold);color:#111}
 .btn.solid{background:var(--gold);color:#111;font-weight:700}.btn.solid:hover{background:var(--gold2)}
 .menu{display:none;background:none;border:0;color:#fff;font-size:1.6rem;min-width:44px;min-height:44px}
 .hero{min-height:780px;height:100svh;max-height:980px;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 0 60px;background:radial-gradient(ellipse at 74% 47%,rgba(154,119,63,.2),transparent 40%),linear-gradient(115deg,#090a0b 30%,#0d0f10)}
 .hero-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:10px;position:relative;z-index:2}
-.hero h1{font-weight:600;font-size:clamp(3.2rem,6.6vw,6.4rem);line-height:1;margin:22px 0 24px;letter-spacing:-.08em}
+.hero h1{font-weight:600;font-size:clamp(3.4rem,7.4vw,7rem);line-height:1;margin:22px 0 24px;letter-spacing:-.08em}
 .hero h1 em,.gold{font-style:normal;color:var(--gold2)}
 .hero-copy{max-width:500px;color:#b0ada5}
 .hero-actions{display:flex;align-items:center;gap:22px;margin-top:34px;flex-wrap:wrap}
 .text-link{font-size:.84rem;color:#d7d1c5}
+.hero h1,.hero .eyebrow,.hero-copy,.hero-actions{animation:up 1s cubic-bezier(.2,.7,.2,1) both}
+.hero h1{animation-delay:.15s}.hero-copy{animation-delay:.35s}.hero-actions{animation-delay:.5s}
+@keyframes up{from{opacity:0;transform:translateY(30px)}}
 .stage{height:540px;position:relative;touch-action:pan-y}
 #gl{position:absolute;inset:0;width:100%;height:100%;display:block}
 .stage .fallback{position:absolute;inset:0;display:grid;place-items:center}
@@ -80,22 +85,10 @@ section{padding:110px 0}
 .mh em{display:inline-block;margin-top:8px;font-style:normal;font-size:.55rem;background:var(--ac);color:var(--bg);padding:4px 9px;border-radius:var(--rd)}
 .mi{position:absolute;right:-6%;top:34px;width:46%;height:75%;background:var(--im);border-radius:var(--ir);box-shadow:0 0 40px var(--ac)}
 .concept{position:absolute;right:10px;bottom:10px;background:rgba(9,10,11,.85);color:var(--gold2);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 9px;border:1px solid var(--line)}
-dialog{background:#0f1112;color:var(--white);border:1px solid var(--gold);padding:0;width:min(640px,calc(100% - 28px));max-height:88svh;overflow:auto}
-dialog::backdrop{background:rgba(0,0,0,.8);backdrop-filter:blur(6px)}
-.cs{padding:28px}.cs h3{font-size:2rem;margin:6px 0 10px}.cs h4{color:var(--gold);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;margin:22px 0 8px}
-.cs p,.cs li{color:var(--muted);font-size:.9rem}.cs ul{padding-left:18px;margin:0}
-.cs .note{border:1px solid var(--line);padding:10px 12px;font-size:.78rem;color:#b9b3a6;margin-top:20px}
-.cs .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
-body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
-.hero h1{font-size:clamp(3.4rem,7.4vw,7rem)}
-.hero h1,.hero .eyebrow,.hero-copy,.hero-actions{animation:up 1s cubic-bezier(.2,.7,.2,1) both}
-.hero h1{animation-delay:.15s}.hero-copy{animation-delay:.35s}.hero-actions{animation-delay:.5s}
-@keyframes up{from{opacity:0;transform:translateY(30px)}}
 .pbody{padding:22px;display:flex;flex-direction:column;gap:8px;flex:1}
 .pbody small{color:var(--gold);letter-spacing:.16em;text-transform:uppercase;font-size:.64rem}
 .pbody h3{font-size:1.45rem;font-weight:600;margin:0}
 .pbody p{color:var(--muted);font-size:.84rem;margin:0}
-.pbody .det{color:#8f8b82;font-size:.76rem}
 .pbody .btn{margin-top:auto;align-self:flex-start;padding:10px 14px}
 .about{background:radial-gradient(ellipse at 20% 50%,rgba(201,169,110,.08),transparent 60%)}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:end}
@@ -126,14 +119,46 @@ footer{padding:50px 0 90px;border-top:1px solid var(--line);color:#8d897f;font-s
 .foot a{display:block;padding:3px 0}.foot a:hover{color:var(--gold2)}
 .copy{margin-top:34px;padding-top:20px;border-top:1px solid var(--line)}
 .rv{opacity:0;transform:translateY(22px);transition:opacity .8s,transform .8s}.rv.in{opacity:1;transform:none}
-@media(max-width:900px){nav{gap:16px}.hero{height:auto;min-height:860px}.hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:30px}.stage{height:360px}.section-head{display:block}.section-head p{margin-top:16px}.service-grid,.work-grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.foot{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.wrap{width:calc(100% - 36px)}.nav{height:68px}.menu{display:block}nav{display:none;position:absolute;top:68px;left:0;right:0;background:#0d0f10;padding:16px 24px 24px;flex-direction:column;border-bottom:1px solid var(--line)}nav a{padding:10px 0}nav.open{display:flex}.nav-cta{display:none}.hero{padding-top:105px}.hero h1{font-size:clamp(3.1rem,14vw,4.6rem)}.stage{height:320px}section{padding:76px 0}.service-grid,.work-grid{grid-template-columns:1fr}.steps{gap:26px 16px}.wa-float span{display:none}.wa-float{padding:15px}.logo{width:32px;height:32px}}
+
+/* Case study page */
+.cv{position:fixed;inset:0;z-index:40;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch;display:none}
+.cv.open{display:block;animation:cvin .5s cubic-bezier(.2,.7,.2,1)}
+@keyframes cvin{from{opacity:0;transform:translateY(16px)}}
+.cv-top{position:sticky;top:0;z-index:2;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(9,10,11,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.cv-back{background:none;border:0;color:var(--gold2);font:inherit;font-size:.84rem;letter-spacing:.04em;cursor:pointer;min-height:44px;padding:0 4px}
+.cv-back:hover{color:var(--gold)}
+.cv-count{color:#8f8b82;font-size:.72rem;letter-spacing:.16em}
+.cv-wrap{width:min(var(--max),calc(100% - 48px));margin:auto;padding-bottom:70px}
+.cv-intro{padding:70px 0 50px;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:end}
+.cv-intro h1{font-size:clamp(2.6rem,6vw,5.2rem);line-height:1;letter-spacing:-.06em;margin:14px 0 18px;font-weight:600}
+.cv-intro p{color:var(--muted);max-width:520px;margin:0}
+.cv-meta{color:#8f8b82;font-size:.76rem;margin-top:18px}
+.cv-screen{height:clamp(220px,36vw,380px);position:relative;border:1px solid var(--line);overflow:hidden;background:#0b0c0d;padding:22px 22px 0}
+.cv-cols{display:grid;grid-template-columns:1fr 2fr;gap:50px;padding:50px 0;border-top:1px solid var(--line)}
+.cv-cols ul{margin:0;padding:0;list-style:none}
+.cv-cols li{padding:14px 0;border-bottom:1px solid var(--line);color:var(--muted);font-size:.94rem}
+.cv-cols li:first-child{border-top:1px solid var(--line)}
+.cv-cols p{color:var(--muted);margin:0;font-size:1rem;max-width:620px}
+.cv-resp{display:grid;grid-template-columns:auto 1fr;gap:50px;align-items:center;padding:50px 0;border-top:1px solid var(--line)}
+.phone{width:210px;aspect-ratio:9/19;border:9px solid #1a1b1d;border-radius:32px;overflow:hidden;position:relative;background:#000;box-shadow:0 30px 60px rgba(0,0,0,.6)}
+.phone .mini{border-radius:0;box-shadow:none}
+.phone .mh{width:100%}
+.phone .mi{top:auto;bottom:-6%;height:42%;width:80%;right:10%}
+.phone .mh h4{font-size:.9rem}
+.cv-resp p{color:var(--muted);max-width:420px;margin:0}
+.cv-next{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:40px 0 0;border-top:1px solid var(--line);flex-wrap:wrap}
+.cv-next button{background:none;border:0;color:var(--gold2);font:inherit;cursor:pointer;font-size:.9rem;min-height:44px;padding:0 4px}
+.cv-next button:hover{color:var(--gold)}
+.cv-note{border:1px solid var(--line);padding:14px 16px;font-size:.82rem;color:#b9b3a6;margin:40px 0 0}
+
+@media(max-width:900px){nav{gap:16px}.hero{height:auto;min-height:860px}.hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:30px}.stage{height:360px}.section-head{display:block}.section-head p{margin-top:16px}.service-grid,.work-grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.foot{grid-template-columns:1fr 1fr}.cv-intro,.cv-cols,.cv-resp{grid-template-columns:1fr;gap:28px}}
+@media(max-width:600px){.wrap,.cv-wrap{width:calc(100% - 36px)}.cv-wrap{width:calc(100% - 36px)}.cv-top{padding:0 14px}.nav{height:68px}.menu{display:block}nav{display:none;position:absolute;top:68px;left:0;right:0;background:#0d0f10;padding:16px 24px 24px;flex-direction:column;border-bottom:1px solid var(--line)}nav a{padding:10px 0}nav.open{display:flex}.nav-cta{display:none}.hero{padding-top:105px}.hero h1{font-size:clamp(3.1rem,14vw,4.6rem)}.stage{height:320px}section{padding:76px 0}.service-grid,.work-grid{grid-template-columns:1fr}.steps{gap:26px 16px}.wa-float span{display:none}.wa-float{padding:15px}.logo{width:32px;height:32px}.cv-screen{height:200px}.phone{width:180px}.cv-resp{justify-items:center;text-align:center}.cv-resp p{text-align:left}.cv-next{flex-direction:column;align-items:flex-start}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header><div class="wrap nav">
+<header class="site"><div class="wrap nav">
 <a class="brand" href="#home" aria-label="VELTRIX home"><svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="vg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3dfaf"/><stop offset="1" stop-color="#b8914f"/></linearGradient></defs><ellipse cx="20" cy="20" rx="18.5" ry="6.5" transform="rotate(-18 20 20)" fill="none" stroke="#c9a96e" stroke-opacity=".45" stroke-width=".9"/><path d="M8 9L20 32L32 9" fill="none" stroke="url(#vg)" stroke-width="3.4" stroke-linejoin="miter" stroke-linecap="square"/></svg><span>VELTRIX</span></a>
 <nav id="nav" aria-label="Main"><a href="#services">Services</a><a href="#work">Concepts</a><a href="#about">Studio</a><a href="#approach">Process</a><a href="#contact">Contact</a></nav>
 <a class="nav-cta" href="#contact">Start a project</a>
@@ -221,34 +246,76 @@ menu.addEventListener('click',()=>{const o=nav.classList.toggle('open');menu.set
 nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded',false)}));
 $('year').textContent=new Date().getFullYear();
 
-/* Concepts */
+/* Concept data (fictional brands, self-initiated concepts) */
 const P=[
 {k:'Automotive',b:'AURELIAN',t:'Motion, engineered.',d:'A premium dealership concept built around cinematic vehicle showcases.',h:'Drive the extraordinary',c:'Book a test drive',f:'Manrope,sans-serif',bg:'#0e0f10',ink:'#f3f0e9',ac:'#c9a96e',im:'linear-gradient(135deg,#8c6d3b,#1a1713 70%)',rd:'0',ir:'50% 0 0 50%',
+ idea:'A showroom that treats each vehicle like a premiere: one car full screen, with specifications and a test drive booking one scroll away.',
  x:['Dark showroom palette so vehicles carry the colour','Spec-led layout: power, range and price at a glance','One-tap test drive booking on every page'],
  y:['Vehicle gallery and filter','Finance enquiry form','Test drive booking']},
 {k:'Education',b:'Crestfield',t:'Learning without limits.',d:'A premium school website concept focused on trust, admissions and clarity.',h:'Where curiosity grows',c:'Apply now',f:'Georgia,serif',bg:'#f4efe4',ink:'#1b2430',ac:'#1f4a8a',im:'linear-gradient(135deg,#7fa6d9,#1f4a8a)',rd:'20px',ir:'18px',
+ idea:'A school site that answers a parent\'s first three questions quickly: what the school teaches, how to apply, and when to visit.',
  x:['Warm, trustworthy palette for parents','Admissions path reachable from every page','Clear calendar and news layout'],
  y:['Admissions enquiry','Programme pages','Events calendar']},
 {k:'Healthcare & pharmacy',b:'Mendel',t:'Care, made simple.',d:'A calm pharmacy and clinic concept for services, opening hours and enquiries.',h:'Your health, close by',c:'Order a refill',f:'Manrope,sans-serif',bg:'#eef7f5',ink:'#0f2b2a',ac:'#0e8f7e',im:'linear-gradient(135deg,#8fe0d0,#0e8f7e)',rd:'20px',ir:'50%',
+ idea:'A pharmacy and clinic site where opening hours, services and refills are visible before anything else, built for quick use on a phone.',
  x:['High contrast and large tap targets for all ages','Opening hours and location always visible','Plain language over medical jargon'],
  y:['Refill requests','Service finder','WhatsApp consultation link']},
 {k:'Real estate',b:'HAVEN',t:'Space to imagine.',d:'A visual-first property concept for listings, discovery and viewing requests.',h:'Find the place you will love',c:'Book a viewing',f:'Manrope,sans-serif',bg:'#1b1613',ink:'#f3e9dc',ac:'#e0b07a',im:'linear-gradient(160deg,#e0b07a,#4a3523 60%,#120f0d)',rd:'0',ir:'0',
+ idea:'A property site built around photography. Each listing leads with the space, then the facts, then a viewing request.',
  x:['Large photography leads every listing','Filters kept simple: area, price, bedrooms','Enquiry-first calls to action'],
  y:['Listing grid and filters','Viewing request','Saved shortlist']},
 {k:'Hospitality',b:'Solace',t:'Stay in the moment.',d:'A boutique hotel concept led by atmosphere and booking enquiries.',h:'A quiet place to arrive',c:'Check dates',f:'Georgia,serif',bg:'#2a1e22',ink:'#f6e9e5',ac:'#e2a7b0',im:'linear-gradient(135deg,#e2a7b0,#5a3340)',rd:'40px',ir:'999px 999px 0 0',
+ idea:'A boutique hotel site that sets the mood first, then makes checking dates as simple as possible.',
  x:['Editorial typography to set the mood','Soft imagery with slow, gentle motion','Booking flow reduced to three steps'],
  y:['Room gallery','Availability enquiry','Restaurant and spa pages']},
 {k:'Corporate',b:'NORTHGATE',t:'Built to be trusted.',d:'A confident corporate website concept for services, leadership and credibility.',h:'Strategy. Delivered.',c:'Contact us',f:'Manrope,sans-serif',bg:'#12151c',ink:'#e8ebf4',ac:'#9fb0d8',im:'linear-gradient(135deg,#9fb0d8,#232a40)',rd:'2px',ir:'2px',
+ idea:'A corporate site that builds trust through structure: clear services, visible leadership and an easy route to contact.',
  x:['Structured grid and restrained palette','Clear hierarchy from services to leadership','Credibility sections ready for real content'],
  y:['Services overview','Team and leadership pages','Enquiry form']}];
+
 const waMsg=m=>`https://wa.me/${WA}?text=${encodeURIComponent(m)}`;
-$('work-grid').innerHTML=P.map((p,i)=>`<article class="project"><div class="shot" aria-hidden="true"><div class="mini" style="--bg:${p.bg};--ink:${p.ink};--ac:${p.ac};--f:${p.f};--im:${p.im};--rd:${p.rd};--ir:${p.ir}"><div class="mn"><b>${p.b}</b><s></s><s></s><u>Menu</u></div><div class="mh"><h4>${p.h}</h4><p></p><p></p><em>${p.c}</em></div><div class="mi"></div></div><span class="concept">Concept</span></div><div class="pbody"><small>${p.k} · Concept</small><h3>${p.t}</h3><p>${p.d}</p><button class="btn" data-i="${i}">View case study</button></div></article>`).join('');
-const dlg=document.createElement('dialog');dlg.id='cs';dlg.setAttribute('aria-label','Concept case study');document.body.appendChild(dlg);
-$('work-grid').addEventListener('click',e=>{const b=e.target.closest('button[data-i]');if(!b)return;const p=P[b.dataset.i];
-dlg.innerHTML=`<div class="cs"><div class="eyebrow">${p.k} · Concept</div><h3>${p.t}</h3><p>${p.d} Fictional brand: ${p.b}.</p><h4>Design decisions</h4><ul>${p.x.map(v=>`<li>${v}</li>`).join('')}</ul><h4>Planned features</h4><ul>${p.y.map(v=>`<li>${v}</li>`).join('')}</ul><h4>Built with</h4><p>HTML, CSS and JavaScript. 3D or interactive elements can be added where they help.</p><div class="note">Concept work. A self-initiated VELTRIX exploration, not a client project.</div><div class="row"><a class="btn solid" target="_blank" rel="noopener" href="${waMsg("Hello VELTRIX, I'd like a project like your "+p.k+" concept.")}">Discuss a project like this</a><button class="btn" id="csx">Close</button></div></div>`;
-dlg.showModal();$('csx').onclick=()=>dlg.close()});
-dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
-/* magnetic solid buttons (fine pointers only) */
+const vars=p=>`--bg:${p.bg};--ink:${p.ink};--ac:${p.ac};--f:${p.f};--im:${p.im};--rd:${p.rd};--ir:${p.ir}`;
+const miniHTML=p=>`<div class="mini" style="${vars(p)}"><div class="mn"><b>${p.b}</b><s></s><s></s><u>Menu</u></div><div class="mh"><h4>${p.h}</h4><p></p><p></p><em>${p.c}</em></div><div class="mi"></div></div>`;
+
+/* Concept cards */
+$('work-grid').innerHTML=P.map((p,i)=>`<article class="project"><div class="shot" aria-hidden="true">${miniHTML(p)}<span class="concept">Concept</span></div><div class="pbody"><small>${p.k} · Concept</small><h3>${p.t}</h3><p>${p.d}</p><button class="btn" data-i="${i}">View case study</button></div></article>`).join('');
+$('work-grid').addEventListener('click',e=>{const b=e.target.closest('button[data-i]');if(b)location.hash='case-'+b.dataset.i;});
+
+/* Case study page */
+const cv=document.createElement('div');
+cv.className='cv';cv.id='cv';cv.setAttribute('role','dialog');cv.setAttribute('aria-modal','true');cv.setAttribute('aria-label','Concept case study');
+document.body.appendChild(cv);
+
+function openCase(i){
+const p=P[i],prev=(i+P.length-1)%P.length,next=(i+1)%P.length;
+cv.innerHTML=`<div class="cv-top"><button class="cv-back" id="cvb">← Back to concepts</button><span class="cv-count">${String(i+1).padStart(2,'0')} / ${String(P.length).padStart(2,'0')}</span></div>
+<div class="cv-wrap">
+<header class="cv-intro">
+<div><div class="eyebrow">${p.k} · Concept</div><h1>${p.t}</h1><p>${p.d}</p><div class="cv-meta">Fictional brand: ${p.b} · Self-initiated VELTRIX concept, not a client project</div>
+<a class="btn solid" style="margin-top:26px" target="_blank" rel="noopener" href="${waMsg("Hello VELTRIX, I'd like a project like your "+p.k+" concept.")}">Discuss a project like this</a></div>
+<div class="cv-screen" aria-hidden="true">${miniHTML(p)}</div>
+</header>
+<section class="cv-cols"><div><div class="eyebrow">The idea</div></div><div><p>${p.idea}</p></div></section>
+<section class="cv-cols"><div><div class="eyebrow">Design decisions</div></div><div><ul>${p.x.map(v=>`<li>${v}</li>`).join('')}</ul></div></section>
+<section class="cv-cols"><div><div class="eyebrow">Planned features</div></div><div><ul>${p.y.map(v=>`<li>${v}</li>`).join('')}</ul></div></section>
+<section class="cv-resp"><div class="phone" aria-hidden="true" style="--x:0">${miniHTML(p)}</div><div><div class="eyebrow" style="margin-bottom:10px">Responsive</div><p>On a phone the main action stays within thumb reach, and the layout stacks into one column without losing its character.</p></div></section>
+<p class="cv-note">Concept work. A self-initiated VELTRIX exploration, not a client project. No real business is represented.</p>
+<nav class="cv-next" aria-label="Concept navigation"><button data-go="${prev}">← ${P[prev].k}</button><button data-go="${next}">${P[next].k} →</button></nav>
+</div>`;
+cv.classList.add('open');cv.scrollTop=0;document.body.style.overflow='hidden';
+$('cvb').focus();
+}
+function closeCase(){cv.classList.remove('open');document.body.style.overflow='';}
+function route(){const m=location.hash.match(/^#case-(\d+)$/);if(m&&P[+m[1]])openCase(+m[1]);else closeCase();}
+addEventListener('hashchange',route);
+route();
+cv.addEventListener('click',e=>{
+if(e.target.closest('#cvb')){location.hash='#work';return;}
+const g=e.target.closest('[data-go]');if(g)location.hash='case-'+g.dataset.go;
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&cv.classList.contains('open'))location.hash='#work'});
+
+/* Magnetic solid buttons (fine pointers only) */
 if(matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.btn.solid,.nav-cta').forEach(el=>{el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.18}px,${(e.clientY-r.top-r.height/2)*.25}px)`});el.addEventListener('pointerleave',()=>el.style.transform='')});
 
 /* WhatsApp form */
@@ -278,7 +345,6 @@ const stage=$('stage'),cv=$('gl');
 const r=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true,powerPreference:'low-power'});
 r.setPixelRatio(Math.min(devicePixelRatio,2));
 const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(35,1,.1,50);cam.position.z=7;
-/* soft studio environment for metal reflections */
 const env=new THREE.Scene();
 [[0xfff3da,6,[0,6,2]],[0xc9a96e,4,[-6,0,2]],[0xffffff,3,[6,-2,3]],[0x4a3a22,2,[0,-6,0]]].forEach(l=>{const m=new THREE.Mesh(new THREE.BoxGeometry(l[1]*2,l[1]*2,.2),new THREE.MeshBasicMaterial({color:l[0]}));m.position.set(...l[2]);m.lookAt(0,0,0);env.add(m)});
 const pm=new THREE.PMREMGenerator(r);scene.environment=pm.fromScene(env,.04).texture;
@@ -308,4 +374,4 @@ stage.classList.add('on');
 })();
 </script>
 </body>
- </html>
+                                                         </html>
